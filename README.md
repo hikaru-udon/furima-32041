@@ -3,15 +3,16 @@
 
 ## users
 
-| Column                  | Type   | Option      |
-| ----------------------- | ------ | ----------- |
-| nickname                | string | null: false |
-| email                   | string | null: false |
-| password                | string | null: false |
-| password_confirmation   | string | null: false |
-| first_name              | string | null: false |
-| last_name               | string | null: false |
-| birth_day               | string | null: false |
+| Column                           | Type   | Option      |
+| -------------------------------- | ------ | ----------- |
+| nickname                         | string | null: false |
+| email                            | string | null: false |
+| encrypted_password               | string | null: false |
+| first_name                       | string | null: false |
+| last_name                        | string | null: false |
+| first_name_katakana              | string | null: false |
+| last_name_katakana               | string | null: false |
+| birth_day                        | date   | null: false |
 
 ###　アソシエーション
 
@@ -21,17 +22,17 @@
 
 ## items
 
-| Column         | Type   | Option      |
-| -------------- | ------ | ----------- |
-| image          | string | null: false |
-| name           | string | null: false |
-| explanation    | text   | null: false |
-| category       | string | null: false |
-| condition      | string | null: false |
-| delivery_fee   | string | null: false |
-| delivery_area  | string | null: false |
-| delivery_date  | string | null: false |
-| price          | string | null: false |
+| Column         | Type    | Option      |
+| -------------- | ------- | ----------- |
+| image          | string  | null: false |
+| name           | string  | null: false |
+| explanation    | text    | null: false |
+| category       | string  | null: false |
+| condition      | string  | null: false |
+| delivery_fee   | integer | null: false |
+| delivery_area  | string  | null: false |
+| delivery_date  | string  | null: false |
+| price          | integer | null: false |
 
 ### アソシエーション
 
@@ -49,20 +50,20 @@ has_one :order
 ###　アソシエーション
 
 belongs_to :user
-has_one :item
+belongs_to :item
 has_one :address
 
 
 ## addresses
 
-| Column                 | Type   | Option      |
-| ---------------------- | ------ | ----------- |
-| postal_code            | string | null: false |
-| prefecture             | string | null: false |
-| city                   | string | null: false |
-| number                 | string | null: false |
-| building               | string | null: false |
-| phone_number           | string | null: false |
+| Column                 | Type    | Option      |
+| ---------------------- | ------- | ----------- |
+| postal_code            | string  | null: false |
+| prefecture_id          | integer | null: false |
+| city                   | string  | null: false |
+| number                 | string  | null: false |
+| building               | string  |             |
+| phone_number           | string  | null: false |
 
 ### アソシエーション
 
