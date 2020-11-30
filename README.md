@@ -22,17 +22,16 @@
 
 ## items
 
-| Column         | Type    | Option      |
-| -------------- | ------- | ----------- |
-| image          | string  | null: false |
-| name           | string  | null: false |
-| explanation    | text    | null: false |
-| category       | string  | null: false |
-| condition      | string  | null: false |
-| delivery_fee   | integer | null: false |
-| delivery_area  | string  | null: false |
-| delivery_date  | string  | null: false |
-| price          | integer | null: false |
+| Column           | Type    | Option      |
+| ---------------- | ------- | ----------- |
+| name             | string  | null: false |
+| explanation      | text    | null: false |
+| category_id      | integer | null: false |
+| condition_id     | integer | null: false |
+| delivery_fee_id  | integer | null: false |
+| delivery_area_id | integer | null: false |
+| delivery_date_id | integer | null: false |
+| price            | integer | null: false |
 
 ### アソシエーション
 
@@ -56,14 +55,15 @@ has_one :address
 
 ## addresses
 
-| Column                 | Type    | Option      |
-| ---------------------- | ------- | ----------- |
-| postal_code            | string  | null: false |
-| prefecture_id          | integer | null: false |
-| city                   | string  | null: false |
-| number                 | string  | null: false |
-| building               | string  |             |
-| phone_number           | string  | null: false |
+| Column                 | Type        | Option            |
+| ---------------------- | ----------- | ----------------- |
+| postal_code            | string      | null: false       |
+| prefecture_id          | integer     | null: false       |
+| city                   | string      | null: false       |
+| number                 | string      | null: false       |
+| building               | string      |                   |
+| phone_number           | string      | null: false       |
+| order                  | references  | foreign_key: true |
 
 ### アソシエーション
 
