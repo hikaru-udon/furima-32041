@@ -58,6 +58,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
+      it "priceが300以下だと登録できない" do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+      it "priceが9,999,999以上だと登録できない" do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
       it "userが紐づいていないと保存できないこと" do
         @item.user = nil
         @item.valid?

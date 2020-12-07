@@ -8,7 +8,7 @@ FactoryBot.define do
     delivery_fee_id  {2}
     prefecture_id    {2}
     delivery_date_id {2}
-    price            { Faker::Number.number(3) }
+    price            { rand(300..9999999) }
     user # = association :user, factory: :user
 
     after(:build) do |item|
