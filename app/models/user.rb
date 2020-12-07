@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   with_options presence: true do
     validates :nickname
     validates :email
@@ -13,4 +14,6 @@ class User < ApplicationRecord
     validates :last_name_katakana, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :birth_day
   end
+
+  has_many :items
 end
