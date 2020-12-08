@@ -28,11 +28,10 @@ before_action :move_to_index, only: [:edit]
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
       redirect_to root_path
     else
-      item = Item.find(params[:id])
       render :edit
     end
   end
@@ -43,7 +42,9 @@ before_action :move_to_index, only: [:edit]
   end
 
   def move_to_index 
-    redirect_to :index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 
 end
