@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 before_action :authenticate_user!, except: [:index, :show]
-# before_action :move_to_index, only: [:edit, :destroy]　dstroyアクションはパスが重複しているかつ、直打ちで確認はできない。
-before_action :set_item, only: [:show, :edit, :update, :destroy]
+before_action :set_item, only: [:show, :edit, :update]
+before_action :move_to_index, only: [:edit]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -33,25 +33,18 @@ before_action :set_item, only: [:show, :edit, :update, :destroy]
       render :edit
     end
   end
-
-  def destroy
-    if current_user.id == @item.user_id
-      @item.destroy
-      redirect_to root_path
-    end
-  end
   
   private
   def item_params
     params.require(:item).permit(:image, :name, :explanation, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :delivery_date_id, :price).merge(user_id: current_user.id)
   end
   
-  #メモ：authenticate_user!で先にサインイン画面に弾いているので、必要がない。
-  # def move_to_index 
-  #   unless user_signed_in?
-  #     redirect_to action: :index
-  #   end
-  # end
+  def move_to_index
+    # @item = Item.find(params[:id])
+    unless @item.user.id == current_user.id
+      redirect_to action: :index
+    end
+  end
   
   def set_item
     @item = Item.find(params[:id])
