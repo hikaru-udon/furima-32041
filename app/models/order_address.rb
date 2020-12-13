@@ -3,16 +3,15 @@ class OrderAddress
   attr_accessor :postal_code, :prefecture_id, :city, :number, :building, :phone_number, :item_id, :user_id 
 
   with_options presence: true do
-    validates :postal_code
-    validates :prefecture_id
+    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "must be hyphen"}
+    validates :prefecture_id, numericality: { other_than: 1, message: 'select' }
     validates :city
     validates :number
-    validates :phone_number
-    validates :number, format: {with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: "is invalid. Input half-width characters."}
+    validates :phone_number, format: { with: /\A\d{10,11}\z/}
     validates :item_id
     validates :user_id
   end
-  validates :prefecture_id, numericality: { other_than: 1 }
+
   
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
