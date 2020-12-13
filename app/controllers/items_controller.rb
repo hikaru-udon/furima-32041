@@ -42,7 +42,7 @@ before_action :move_to_index, only: [:edit]
   def move_to_index
     # @item = Item.find(params[:id])
     unless @item.user.id == current_user.id
-      redirect_to action: :index
+      redirect_to root_path
     end
   end
   
