@@ -9,6 +9,7 @@ FactoryBot.define do
     phone_number   { "09012345678" }
     item_id        { 1 }  #これらでもいけるが、捏造になるので正しいテストコードではない
     user_id        { 1 }
+    token          { "tok_abcdefghijk00000000000000000"}
 
     #Formオブジェクトのテストなので「order」でのアソシエーションの記述はいらない。
   end
